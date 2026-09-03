@@ -43,4 +43,11 @@ CREATE TRIGGER on_auth_user_created
 
 ALTER TABLE public.users
     ENABLE ROW LEVEL SECURITY;  
-      
+
+CREATE POLICY "Users can view their own profile"
+ON public.users
+FOR SELECT
+TO authenticated
+USING (
+    user_id = auth.uid()
+);    

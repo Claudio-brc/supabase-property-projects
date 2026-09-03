@@ -24,4 +24,11 @@ if (error) {
   process.exit(1);
 }
 
+const { data: profile, error: profileError } = await supabase
+  .from('users')
+  .select('*');
+
+console.log('Profile:', profile);
+console.log('Profile error:', profileError);
+
 console.log('User created:', data.user);
